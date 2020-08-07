@@ -1,9 +1,9 @@
 export const config = {
-  apiKey: "AIzaSyA1gkIA3GUHnxMkFrAy2itcmoFTlWV7YM8",
-  authDomain: "postgram-38cad.firebaseapp.com",
-  databaseURL: "https://postgram-38cad.firebaseio.com",
-  projectId: "postgram-38cad",
-  storageBucket: "postgram-38cad.appspot.com",
-  messagingSenderId: "1029913541884",
-  appId: "1:1029913541884:web:d4fa3a2bda05313e43eb79",
+  apiKey: "AIzaSyC_u8yZyw6h-usRCC0hT2tV9-kmI_FfWTc",
+  authDomain: "fir-learning-30279.firebaseapp.com",
+  databaseURL: "https://fir-learning-30279.firebaseio.com",
+  projectId: "fir-learning-30279",
+  storageBucket: "fir-learning-30279.appspot.com",
+  messagingSenderId: "340246216149",
+  appId: "1:340246216149:web:a196ad4f902468e366d15c"
 };

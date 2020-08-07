@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button, Layout } from "antd";
 import { useFirebase } from "../firebase/useFirebase";
 import { Link } from "@reach/router";
+import passwordChange from "../auth/passwordChange"
 
 const MainLayout = styled(Layout)`
   width: 100vw;
@@ -31,6 +32,7 @@ function MainPage() {
         <div>
           or register <Link to="/register">here</Link>
         </div>
+        <passwordChange />
       </MainLayout>
     );
   }
