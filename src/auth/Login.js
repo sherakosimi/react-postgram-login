@@ -15,7 +15,7 @@ const MainLayout = styled(Layout)`
 const TextLayout = styled.div``;
 
 function Login() {
-  const { login } = useFirebase();
+  const {login} = useFirebase();
   const navigate = useNavigate();
 
   const onFormFinish = async (values) => {
@@ -68,6 +68,9 @@ function Login() {
 
       <TextLayout>
         Don't have login yet? Register <Link to="/register">here</Link>
+      </TextLayout>
+      <TextLayout>
+          Forgot password? <Link to = "/passwordchange">Reset </Link>
       </TextLayout>
     </MainLayout>
   );

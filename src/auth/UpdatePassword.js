@@ -14,14 +14,16 @@ const MainLayout = styled(Layout)`
 
 const TextLayout = styled.div``;
 
-function PasswordChange() {
-  const { passwordchange } = useFirebase();
+function UpdatePasswpord() {
+  const {reauthenticate, changepassword} = useFirebase();
   const navigate = useNavigate();
 
   const onFormFinish = async (values) => {
     try {
-      await passwordchange (values.email);
-      message.success("Email sent");
+      await reauthenticate (values.password);
+      console.log(values.newpassword)
+      await changepassword (values.newpassword);
+      message.success("Password is changed")
       navigate("/");
     } catch (error) {
       message.error(error.message);
@@ -30,24 +32,35 @@ function PasswordChange() {
 
   return (
     <MainLayout>
-      <PageHeader title="Password Change" />
+      <PageHeader title="Login" />
       <Form onFinish={onFormFinish}>
         <Form.Item
-          label="Email"
-          name="email"
+          label="Current Password"
+          name="password"
           rules={[
             {
               required: true,
-              type: "email",
-              message: "Please input your email!",
+              message: "Please input your password!",
             },
           ]}
         >
-          <Input />
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="New Password"
+          name="newpassword"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Reset
+            Login
           </Button>
         </Form.Item>
       </Form>
@@ -55,8 +68,11 @@ function PasswordChange() {
       <TextLayout>
         Don't have login yet? Register <Link to="/register">here</Link>
       </TextLayout>
+      <TextLayout>
+          Forgot password? <Link to = "/passwordchange">Reset </Link>
+      </TextLayout>
     </MainLayout>
   );
 }
 
-export default PasswordChange;
+export default UpdatePasswpord;

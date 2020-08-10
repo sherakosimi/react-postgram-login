@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import { config } from "./config";
+import {} from "antd";
 
 const firebaseContext = React.createContext();
 
@@ -35,15 +36,37 @@ function useProvideFirebase() {
     await firebase.auth().signInWithEmailAndPassword(email, password);
   };
 
+  const passwordchange = async (email)=>{
+    await firebase.auth().sendPasswordResetEmail(email)
+  };
+
   const signout = async () => {
     await firebase.auth().signOut();
   };
+
+  const changepassword = async (newPassword) =>{
+    var user = firebase.auth().currentUser;
+    user.updatePassword(newPassword);
+  }
+
+const reauthenticate = async (currentPassword) => {
+  var user = firebase.auth().currentUser;
+  console.log(user.email, currentPassword)
+  var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
+
+  await user.reauthenticateWithCredential(cred);
+}
+  
+
 
   return {
     user,
     register,
     login,
     signout,
+    passwordchange,
+    changepassword,
+    reauthenticate
   };
 }
 
