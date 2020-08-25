@@ -5,7 +5,7 @@ import { Link } from "@reach/router";
 import { useNavigate } from "@reach/router";
 import { useFirebase } from "../firebase/useFirebase";
 
-const MainLayout = styled(Layout)`
+const MainLayout1 = styled(Layout)`
   width: 100vw;
   height: 100vh;
   align-items: center;
@@ -29,7 +29,7 @@ function Login() {
   };
 
   return (
-    <MainLayout>
+    <MainLayout1>
       <PageHeader title="Login" />
       <Form onFinish={onFormFinish}>
         <Form.Item
@@ -72,7 +72,7 @@ function Login() {
       <TextLayout>
           Forgot password? <Link to = "/passwordchange">Reset </Link>
       </TextLayout>
-    </MainLayout>
+    </MainLayout1>
   );
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { ProvideFirebase } from "./firebase/useFirebase";
 import { Router } from "@reach/router";
 import MainPage from "./posts/MainPage";
+import HomePage from "./posts/HomePage";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import "./App.css";
@@ -13,7 +14,8 @@ function App() {
   return (
     <ProvideFirebase>
       <Router>
-        <MainPage path="/" />
+        <HomePage path = "/"/>
+        <MainPage path="/mainpage" />
         <Login path="/login" />
         <Register path="/register" />
         <PasswordChange path="/passwordchange" />
