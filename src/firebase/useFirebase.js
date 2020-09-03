@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import { config } from "./config";
-import {} from "antd";
+import { } from "antd";
 import FacebookLoginWithButton from 'react-facebook-login';
 
 const firebaseContext = React.createContext();
@@ -29,60 +29,55 @@ function useProvideFirebase() {
     };
   }, []);
 
-  const register = async (email, password) => {
-    await firebase.auth().createUserWithEmailAndPassword(email, password);
+  const register = (email, password) => {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
   };
 
-  const login = async (email, password) => {
-    await firebase.auth().signInWithEmailAndPassword(email, password);
+  const login = (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
   };
 
-  const passwordchange = async (email)=>{
-    await firebase.auth().sendPasswordResetEmail(email)
+  const passwordchange = (email) => {
+    return firebase.auth().sendPasswordResetEmail(email)
   };
 
-  const signout = async () => {
-    await firebase.auth().signOut();
+  const signout = () => {
+    return firebase.auth().signOut();
   };
 
-  const changepassword = async (newPassword) =>{
+  const changepassword = (newPassword) => {
     var user = firebase.auth().currentUser;
     user.updatePassword(newPassword);
   }
 
   const signInWithFacebook = () => {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
+    const provider = new firebase.auth.FacebookAuthProvider();
+    return firebase.auth().signInWithPopup(provider)
+
   }
 
-const reauthenticate = async (currentPassword) => {
-  var user = firebase.auth().currentUser;
-  console.log(user.email, currentPassword)
-  var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
+  const reauthenticate = (currentPassword) => {
+    var user = firebase.auth().currentUser;
+    console.log(user.email, currentPassword)
+    var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
 
-  await user.reauthenticateWithCredential(cred);
-}
+    return user.reauthenticateWithCredential(cred);
+  }
 
+  const createCard = (values) => {
+    console.log("values are", values);
+    firebase.database().ref("/cards").push(values);
+  }
 
-  
+  const getCards=()=>{
+    return firebase.database().ref('/cards/').once('value')
+
+  }
+
 
 
   return {
+    getCards,
     user,
     register,
     login,
@@ -90,7 +85,9 @@ const reauthenticate = async (currentPassword) => {
     passwordchange,
     changepassword,
     reauthenticate,
-    signInWithFacebook
+    signInWithFacebook,
+    createCard,
+    useFirebase
   };
 }
 

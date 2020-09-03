@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Button, Layout, Typography, Form, Input, PageHeader, message} from "antd";
 import { useFirebase } from "../firebase/useFirebase";
@@ -8,11 +8,11 @@ import FacebookLoginWithButton from 'react-facebook-login';
 import { useNavigate } from "@reach/router";
 
 
-const { Header, Footer, Content,Sider } = Layout;
 
-const componentClicked = () => {
-  console.log( "Clicked!" )
-}
+
+
+const { Header, Footer, Content} = Layout;
+const { Search } = Input;
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -24,13 +24,6 @@ const MainLayout = styled(Layout)`
 
 `;
 
-const MainLayout1 = styled(Layout)`
-  height: 400;
-  align-items: center;
-  justify-content: center;
-
-`;
-
 const TextLayout = styled.div``;
 
 
@@ -38,15 +31,24 @@ const {Title}= Typography;
 
 
 function HomePage() {
-  const {signInWithFacebook, login} = useFirebase();
+  const {signInWithFacebook, login, user} = useFirebase();
   const navigate = useNavigate();
 
+  useEffect(function(){
+        console.log(user)
+        if(user){
+          navigate("/ss")
+        }
+  }, [user, navigate])
+
+  
 
   const onFormFinish = async (values) => {
     try {
       await login(values.email, values.password);
       message.success("Login is successful");
       navigate("/");
+
     } catch (error) {
       message.error(error.message);
     }
@@ -55,9 +57,9 @@ function HomePage() {
   
   const onFormFinish1 = async () => {
     try {
-      await signInWithFacebook();
-      message.success("Login is successful");
-      navigate("/mainpage");
+      const result = await signInWithFacebook();
+      message.success("Login is successful"+result);
+      navigate("/ss");
     } catch (error) {
       message.error(error.message);
     }
@@ -71,10 +73,36 @@ console.log(responseFacebook)
     <div style ={{width:200,}}>
     <img alt = "logo" src={logo} style={{height:60, marginLeft:-15, marginTop:18}}/>
     </div>
-    <Title style={{color:"black", fontSize:33, paddingLeft:50, marginBottom:-45,marginTop:-68}}>SAVE</Title>
-    <Title style={{color:"black", fontSize:33, paddingLeft:50,}}>SALE</Title>
-    <div style ={{width:300, marginBottom:-20}}>
-          Please login in <Link to="/login">here</Link>
+    <Title style={{color:"black", fontSize:33, paddingLeft:50, marginBottom:-45,marginTop:-68, fontFamily:'Tinos'}}>SAVE</Title>
+    <Title style={{color:"black", fontSize:33, paddingLeft:50,fontFamily:'Tinos'}}>SALE</Title>
+    <Search
+      placeholder="Find your discount"
+      enterButton="Search"
+      size="large"
+     //suffix={suffix}
+      onSearch={value => console.log(value)}
+      style={{ width: 700, marginLeft:300, marginTop:-70}}
+    />
+    <div
+    style={{marginLeft:1300,
+    marginTop:-141}}>
+    <Button type="text">
+     <Title style={{color:"black", fontSize:29,fontFamily:'TinosBoldItalic'}}>Home</Title>
+    </Button>
+    </div>
+    <div
+    style={{marginLeft:1500,
+    marginTop:-64}}>
+    <Button type="text">
+     <Title style={{color:"black", fontSize:29,fontFamily:'TinosBoldItalic'}}>About</Title>
+    </Button>
+    </div>
+    <div 
+    style={{width:100,marginLeft:1700, marginTop:-65}}>
+    <Button danger
+    style={{backgroundColor:"#CD8E7E", borderColor:"#CD8E7E"}}>
+      <Title style={{color:"black", marginTop:-8,fontSize:29,fontFamily:'TinosBold'}}>Log In</Title>
+      </Button>
     </div>
     </Header>
     <Content style = {{backgroundColor: 'black'}}>
@@ -82,10 +110,12 @@ console.log(responseFacebook)
       style = {
          {backgroundColor:'#FFECE7',
          width:350,
-         height:390,
-         marginLeft:770,
-         marginTop:200}}>
-      <PageHeader title="Login"  style={{marginLeft:120}} />
+         height:380,
+         margin:"auto",
+         marginTop:200,
+         borderRadius:"20px"
+         }}>
+      <PageHeader title="Login"  style={{width:115, margin:"auto"}} />
       <Form onFinish={onFormFinish} >
         <div
         style ={{width:300, marginLeft:20}}>
@@ -118,14 +148,18 @@ console.log(responseFacebook)
           <Input.Password />
         </Form.Item>
         </div>
-        <div style ={{marginLeft:100}}>
+        <div style ={{marginLeft:140}}>
         <Form.Item>
           <Button type="primary" htmlType="submit">
             Login
           </Button>
         </Form.Item>
         </div>
-        <div style ={{backgroundColor:'black', width:244.5, marginLeft:50}}> 
+        <TextLayout
+        style={{marginLeft:162, marginTop:-20}}>
+          OR
+        </TextLayout>
+        <div style ={{backgroundColor:'#FFECE7', width:300,   marginLeft:30}}> 
     <FacebookLoginWithButton
       appId="2699502363599338"
       autoLoad
@@ -136,15 +170,17 @@ console.log(responseFacebook)
     </div>
       </Form>
       <TextLayout
-      style={{marginLeft:20}}>
+      style={{marginLeft:30, marginTop:10}}>
         Don't have login yet? Register <Link to="/register">here</Link>
       </TextLayout>
-      <TextLayout>
+      <TextLayout
+      style={{marginLeft:30}}>
           Forgot password? <Link to = "/passwordchange">Reset </Link>
       </TextLayout>
       </div>
     </Content>
     <Footer style = {{backgroundColor: '#FFECE7', height:90}}></Footer>
+    
   </MainLayout>
 </>
   );
