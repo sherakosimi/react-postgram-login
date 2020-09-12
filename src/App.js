@@ -10,34 +10,26 @@ import "antd/dist/antd.css";
 import PasswordChange from "./auth/PasswordChange";
 import UpdatePasswpord from "./auth/UpdatePassword";
 import CreateCard from "./auth/CreateCard";
-import Context from "./firebase/Context";
+import SearchPage from "./auth/SearchPage";
+
 
 
 
 function App() {
-  const [cards, setCards] = React.useState([])
-
-  const addNewCard = (card) => {
-    setCards(cards.concat(card));
-    console.log(cards)
-  };
-
-  const contextValue = { cards, addNewCard };
 
   
   return (
     <ProvideFirebase>
-      <Context.Provider value = {contextValue}>
       <Router>
-      <HomePage path = "/ss"/>
+      <HomePage path = "/s"/>
       <MainPage path="/" />
+      <SearchPage path = "/sss"/>
       <CreateCard path = "/createCard"/>
         <Login path="/login" />
         <Register path="/register" />
         <PasswordChange path="/passwordchange" />
         <UpdatePasswpord path = "/updatepassword"/>
       </Router>
-      </Context.Provider>
     </ProvideFirebase>
   );
 }

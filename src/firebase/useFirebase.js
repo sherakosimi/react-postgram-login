@@ -7,6 +7,7 @@ import { } from "antd";
 import FacebookLoginWithButton from 'react-facebook-login';
 
 const firebaseContext = React.createContext();
+firebase.initializeApp(config);
 
 // Provider hook that initializes firebase, creates firebase object and handles state
 function useProvideFirebase() {
@@ -21,6 +22,7 @@ function useProvideFirebase() {
     const unsubscribeFunction = firebase.auth().onAuthStateChanged((user) => {
       console.log("got new user", user);
       setUser(user);
+
     });
 
     return function cleanup() {
@@ -52,9 +54,25 @@ function useProvideFirebase() {
 
   const signInWithFacebook = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
+
     return firebase.auth().signInWithPopup(provider)
 
   }
+  const userUpload = (user) => {
+    try {
+  var ref = firebase.database().ref('users/'+user.displayName);
+  var data = {
+    email: user.email,
+    userId: user.displayName,
+    photoURL: user.photoURL
+  }
+  ref.push(data)
+console.log(" user success upload")}
+  catch (error){ 
+   console.log(error)
+  }
+  }
+  
 
   const reauthenticate = (currentPassword) => {
     var user = firebase.auth().currentUser;
@@ -66,7 +84,24 @@ function useProvideFirebase() {
 
   const createCard = (values) => {
     console.log("values are", values);
-    firebase.database().ref("/cards").push(values);
+
+    var ref = firebase.database().ref('cards/'+values.title);
+    console.log(user)
+    var data = {
+
+      title: values.title,
+      brand: values.brand,
+      category: values.category,
+      price: values.price,
+      description: values.description,
+      img: values.image,
+     // userId: user.displayName
+    }
+
+    ref.push(data)
+
+      
+    
   }
 
   const getCards=()=>{
@@ -77,6 +112,7 @@ function useProvideFirebase() {
 
 
   return {
+    userUpload,
     getCards,
     user,
     register,

@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button, Layout, Typography, Form, Input, PageHeader, message } from "antd";
 import { useFirebase } from "../firebase/useFirebase";
 import { Link, navigate } from "@reach/router";
 import logo from '../assets/3333.jpg'
 import CreateCard from "../auth/CreateCard"
+import HomePage from "./HomePage"
 
 
 
@@ -15,14 +16,6 @@ const { Header, Footer, Content } = Layout;
 
 const { Title } = Typography;
 
-const MainLayout = styled(Layout)`
-  width: 100vw;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-`;
-
-
 
 const MainLayout1 = styled(Layout)`
   width: 100vw;
@@ -30,22 +23,31 @@ const MainLayout1 = styled(Layout)`
   ;
 `
 function MainPage() {
-  const [cards, setCards]= useState([])
+  const [cards, setCards] = useState(false)
   const { user, signout, getCards } = useFirebase();
+
 
   useEffect(() => {
     async function fetchData() {
-      try{
+      try {
         const result = await getCards()
-        console.log(result)
+        result.forEach(element => {
+          console.log(element.val())
+        });
+        if(result.numChildren()){
+          
+            console.log(result.numChildren())
+        }
+        else{
+        }
+        
       }
-      catch(error){
-        console.log(error)
+      catch (error) {
+        console.log("this is error" + error)
       }
     }
     fetchData();
-  }, []); 
-
+  }, [getCards]);
 
   const onLogoutClick = () => {
     try {
@@ -64,8 +66,28 @@ function MainPage() {
       message("Error")
     }
   }
-
-  if (!user) {
+  const hasCards = () => {
+    async function fetchData() {
+      try {
+        const result = await getCards()
+        if(result.numChildren()){
+            setCards(true)
+            console.log(result.numChildren())
+            return cards;
+        }
+        else{
+          setCards(false)
+        }
+        return cards;
+      }
+      catch (error) {
+        console.log("this is error" + error)
+      }
+    }
+    fetchData();
+  }
+  hasCards()
+  if (hasCards()) {
     return (
       <>
         <MainLayout1>
@@ -109,23 +131,24 @@ function MainPage() {
               </Button>
             </div>
           </Header>
-          <Content style={{ backgroundColor: 'black' }}>
+          <Content style={{ backgroundColor: 'black',overflowY:'auto' }}>
             <Title style={{ color: "#FFECE7", marginTop: 20, marginLeft: 850, fontSize: 40, fontFamily: 'TinosBoldItalic' }}>My Wallet</Title>
+            <div style= {{backgroundColor:'black', width:'100%', display: 'flex', flexWrap:'wrap'}}>
             <div
               style={
-                {
-                  backgroundColor: '#FFECE7',
+                {backgroundColor: '#FFECE7',
                   width: 400,
                   height: 250,
-                  marginLeft: 70,
-                  marginTop: 50,
+                  margin:30,
                   borderRadius: "20px"
                 }}>
-
-              <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 5748253529293</Title>
+               <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 42574385473834</Title>
               <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
+              <Title style={{ color: "black", marginTop: -29, paddingLeft: 80, fontSize: 17, fontFamily: 'TinosBold' }}>Adidas </Title>
               <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
-              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description: </Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 70, fontSize: 17, fontFamily: 'TinosBold' }}>Free </Title>
+              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description:</Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 120, fontSize: 17, fontFamily: 'TinosBold' }}>Don't spend any penny for this 10% discount</Title>
             </div>
             <div
               style={
@@ -133,23 +156,7 @@ function MainPage() {
                   backgroundColor: '#FFECE7',
                   width: 400,
                   height: 250,
-                  marginLeft: 70,
-                  marginTop: 75,
-                  borderRadius: "20px"
-                }}>
-              <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 574825329293</Title>
-              <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
-              <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
-              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description: </Title>
-            </div>
-            <div
-              style={
-                {
-                  backgroundColor: '#FFECE7',
-                  width: 400,
-                  height: 250,
-                  marginLeft: 550,
-                  marginTop: -575,
+                  margin:30,
                   borderRadius: "20px"
                 }}>
               <Button danger onClick={addnewCard}
@@ -158,7 +165,7 @@ function MainPage() {
               </Button>
 
             </div>
-
+            </div>
           </Content>
           <Footer style={{ backgroundColor: '#FFECE7', height: 90 }}></Footer>
         </MainLayout1>
@@ -209,47 +216,16 @@ function MainPage() {
             </Button>
           </div>
         </Header>
-        <Content style={{ backgroundColor: 'black' }}>
+        <Content style={{ backgroundColor: 'black',overflowY:'auto' }}>
           <Title style={{ color: "#FFECE7", marginTop: 20, marginLeft: 850, fontSize: 40, fontFamily: 'TinosBoldItalic' }}>My Wallet</Title>
+          <div style= {{backgroundColor:'black', width:'100%', display: 'flex', flexWrap:'wrap'}}>
           <div
             style={
               {
                 backgroundColor: '#FFECE7',
                 width: 400,
                 height: 250,
-                marginLeft: 70,
-                marginTop: 50,
-                borderRadius: "20px"
-              }}>
-
-            <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 5748253529293</Title>
-            <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
-            <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
-            <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description: </Title>
-          </div>
-          <div
-            style={
-              {
-                backgroundColor: '#FFECE7',
-                width: 400,
-                height: 250,
-                marginLeft: 70,
-                marginTop: 75,
-                borderRadius: "20px"
-              }}>
-            <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 574825329293</Title>
-            <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
-            <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
-            <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description: </Title>
-          </div>
-          <div
-            style={
-              {
-                backgroundColor: '#FFECE7',
-                width: 400,
-                height: 250,
-                marginLeft: 550,
-                marginTop: -575,
+                margin:30,
                 borderRadius: "20px"
               }}>
             <Button danger onClick={addnewCard}
@@ -258,7 +234,7 @@ function MainPage() {
             </Button>
 
           </div>
-
+          </div>
         </Content>
         <Footer style={{ backgroundColor: '#FFECE7', height: 90 }}></Footer>
       </MainLayout1>
