@@ -70,31 +70,42 @@ function CreateCard({ onCancel }) {
             onSearch={value => console.log(value)}
             style={{ width: 700, marginLeft: 300, marginTop: -70 }}
           />
-          <div
-            style={{
-              marginLeft: 1300,
-              marginTop: -141
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Home</Title>
-            </Button>
-          </div>
-          <div
-            style={{
-              marginLeft: 1500,
-              marginTop: -64
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>About</Title>
-            </Button>
-          </div>
-          <div
-            style={{ width: 100, marginLeft: 1700, marginTop: -65 }}>
-            <Button danger
-              style={{ backgroundColor: "#FFECE7", borderColor: "#CD8E7E" }}>
-              <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Log In</Title>
-            </Button>
-          </div>
+         <div style= {{backgroundColor:'FFECE7', width:400, display: 'flex', flexWrap:'wrap'}}>
+            <div
+              style={{
+                marginLeft: 1130,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Home</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1470,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Categories</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1300,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>About</Title>
+              </Button>
+            </div>
+            <div
+              style={{ width: 100, marginLeft: 1700, marginTop: -141}}>
+              <Button danger
+                style={{ backgroundColor: "#FFECE7", borderColor: "#CD8E7E" }}>
+                <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Log In</Title>
+              </Button>
+            </div>
+            </div>
         </Header>
         <Content style={{ backgroundColor: 'black' }}>
           <div
@@ -109,7 +120,7 @@ function CreateCard({ onCancel }) {
               }}>
             <MyHeader style={{ marginLeft: 25, width: 250 }} title="Create new card" />
             <Form onFinish={onFinish} initialValues={{
-              category: "other",
+              category: "Other",
               price: 0,
               description: "",
               image: {
@@ -156,12 +167,12 @@ function CreateCard({ onCancel }) {
                 style={{ marginLeft: 31 }}
               >
                 <Select style={{ width: 120, marginLeft: 0 }} onChange={handleChange}>
-                  <Option value="cosmetics">Cosmetics</Option>
-                  <Option value="clothes">Clothes</Option>
-                  <Option value="accessories">Accessories</Option>
-                  <Option value="travel">Travel</Option>
-                  <Option value="services">Services</Option>
-                  <Option value="other">Other</Option>
+                  <Option value="Cosmetics">Cosmetics</Option>
+                  <Option value="Clothes">Clothes</Option>
+                  <Option value="Accessories">Accessories</Option>
+                  <Option value="Travel">Travel</Option>
+                  <Option value="Services">Services</Option>
+                  <Option value="Other">Other</Option>
                 </Select>
               </Form.Item>
               <Form.Item

@@ -84,31 +84,42 @@ function HomePage() {
             onSearch={value => console.log(value)}
             style={{ width: 700, marginLeft: 300, marginTop: -70 }}
           />
-          <div
-            style={{
-              marginLeft: 1300,
-              marginTop: -141
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Home</Title>
-            </Button>
-          </div>
-          <div
-            style={{
-              marginLeft: 1500,
-              marginTop: -64
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>About</Title>
-            </Button>
-          </div>
-          <div
-            style={{ width: 100, marginLeft: 1700, marginTop: -65 }}>
-            <Button danger
-              style={{ backgroundColor: "#CD8E7E", borderColor: "#CD8E7E" }}>
-              <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBold' }}>Log In</Title>
-            </Button>
-          </div>
+         <div style= {{backgroundColor:'FFECE7', width:400, display: 'flex', flexWrap:'wrap'}}>
+            <div
+              style={{
+                marginLeft: 1130,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Home</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1470,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Categories</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1300,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>About</Title>
+              </Button>
+            </div>
+            <div
+              style={{ width: 100, marginLeft: 1700, marginTop: -141}}>
+              <Button danger
+                style={{ backgroundColor: "#FFECE7", borderColor: "#CD8E7E" }}>
+                <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Log In</Title>
+              </Button>
+            </div>
+            </div>
         </Header>
         <Content style={{ backgroundColor: 'black' }}>
           <div

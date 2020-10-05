@@ -11,6 +11,8 @@ import PasswordChange from "./auth/PasswordChange";
 import UpdatePasswpord from "./auth/UpdatePassword";
 import CreateCard from "./auth/CreateCard";
 import SearchPage from "./auth/SearchPage";
+import Categories from './posts/Categories';
+import Test from "./posts/Testinglayout";
 
 
 
@@ -21,10 +23,12 @@ function App() {
   return (
     <ProvideFirebase>
       <Router>
-      <HomePage path = "/s"/>
+        <Test path = "/SS"/>
+      <HomePage path = "/ssw"/>
       <MainPage path="/" />
-      <SearchPage path = "/sss"/>
+      <SearchPage path = "/ss"/>
       <CreateCard path = "/createCard"/>
+      <Categories path = "/categories"/>
         <Login path="/login" />
         <Register path="/register" />
         <PasswordChange path="/passwordchange" />

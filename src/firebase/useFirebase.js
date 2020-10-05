@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 // Provider hook that initializes firebase, creates firebase object and handles state
 function useProvideFirebase() {
   const [user, setUser] = React.useState(null);
+  const [cards1, setCards1] = React.useState([])
 
   React.useEffect(() => {
     if (!firebase.apps.length) {
@@ -60,13 +61,12 @@ function useProvideFirebase() {
   }
   const userUpload = (user) => {
     try {
-  var ref = firebase.database().ref('users/'+user.displayName);
+  var ref = firebase.database().ref('users/'+user.displayName).set(data);
   var data = {
     email: user.email,
     userId: user.displayName,
     photoURL: user.photoURL
   }
-  ref.push(data)
 console.log(" user success upload")}
   catch (error){ 
    console.log(error)
@@ -83,10 +83,8 @@ console.log(" user success upload")}
   }
 
   const createCard = (values) => {
+    getCards1(values)
     console.log("values are", values);
-
-    var ref = firebase.database().ref('cards/'+values.title);
-    console.log(user)
     var data = {
 
       title: values.title,
@@ -98,7 +96,10 @@ console.log(" user success upload")}
      // userId: user.displayName
     }
 
-    ref.push(data)
+    var ref = firebase.database().ref('cards/' + values.title).set(data);
+
+  
+
 
       
     
@@ -106,6 +107,19 @@ console.log(" user success upload")}
 
   const getCards=()=>{
     return firebase.database().ref('/cards/').once('value')
+
+  }
+
+  const getCards1=(values) =>{
+  setCards1([...cards1, {
+    title: values.title,
+      brand: values.brand,
+      category: values.category,
+      price: values.price,
+      description: values.description,
+      img: values.image,
+  }])
+console.log(cards1)
 
   }
 

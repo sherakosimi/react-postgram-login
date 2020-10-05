@@ -4,7 +4,7 @@ import { Button, Layout, Typography, Form, Input, Space, message, Switch, Radio 
 import { useFirebase } from "../firebase/useFirebase";
 import { Link, navigate } from "@reach/router";
 import logo from '../assets/3333.jpg'
-
+import space from '../assets/4444.jpg'
 
 
 
@@ -50,40 +50,117 @@ function SearchPage() {
             onSearch={value => console.log(value)}
             style={{ width: 700, marginLeft: 300, marginTop: -70 }}
           />
-          <div
-            style={{
-              marginLeft: 1300,
-              marginTop: -141
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBold' }}>Home</Title>
-            </Button>
-          </div>
-          <div
-            style={{
-              marginLeft: 1500,
-              marginTop: -64
-            }}>
-            <Button type="text">
-              <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBold' }}>About</Title>
-            </Button>
-          </div>
-          <div
-            style={{ width: 100, marginLeft: 1700, marginTop: -65 }}>
-            <Button danger
-              style={{ backgroundColor: "#FFECE7", borderColor: "#CD8E7E" }}>
-              <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBold' }}>Log In</Title>
-            </Button>
-          </div>
+          <div style= {{backgroundColor:'FFECE7', width:400, display: 'flex', flexWrap:'wrap'}}>
+            <div
+              style={{
+                marginLeft: 1130,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Home</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1470,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Categories</Title>
+              </Button>
+            </div>
+            <div
+              style={{
+                marginLeft: 1300,
+                marginTop: -141
+              }}>
+              <Button type="text">
+                <Title style={{ color: "black", fontSize: 29, fontFamily: 'TinosBoldItalic' }}>About</Title>
+              </Button>
+            </div>
+            <div
+              style={{ width: 100, marginLeft: 1700, marginTop: -141}}>
+              <Button danger
+                style={{ backgroundColor: "#FFECE7", borderColor: "#CD8E7E" }}>
+                <Title style={{ color: "black", marginTop: -8, fontSize: 29, fontFamily: 'TinosBoldItalic' }}>Log In</Title>
+              </Button>
+            </div>
+            </div>
         </Header>
-        <Content style={{ backgroundColor: 'black' }}>
+        <Content style={{backgroundColor:'black'}}>
           <Title style={{ color: "#FFECE7", marginTop: 20, marginLeft: 900, fontSize: 40, fontFamily: 'TinosBold' }}>Results</Title>
-          <div style={{ backgroundColor: '#FFDBCF', width: 1350, height: 600, marginLeft: 570 }}>
+          <div style={{ backgroundColor: '#FFDBCF', width: 1450, height: 600, marginLeft: 460,overflowY:'auto'  }}>
+          <div style= {{ backgroundColor: 'black',width:'100%', display: 'flex', flexWrap:'wrap'}}>
+            <div
+              style={
+                {backgroundColor: '#FFECE7',
+                  width: 400,
+                  height: 250,
+                  margin:30,
+                  borderRadius: "20px"
+                }}>
+               <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 42574385473834</Title>
+              <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
+              <Title style={{ color: "black", marginTop: -29, paddingLeft: 80, fontSize: 17, fontFamily: 'TinosBold' }}>Adidas </Title>
+              <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 70, fontSize: 17, fontFamily: 'TinosBold' }}>Free </Title>
+              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description:</Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 120, fontSize: 17, fontFamily: 'TinosBold' }}>Don't spend any penny for this 10% discount</Title>
+            </div>
+            <div
+              style={
+                {backgroundColor: '#FFECE7',
+                  width: 400,
+                  height: 250,
+                  margin:30,
+                  borderRadius: "20px",
+                  border:'black'
+                }}>
+               <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 42574385473889</Title>
+              <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
+              <Title style={{ color: "black", marginTop: -29, paddingLeft: 80, fontSize: 17, fontFamily: 'TinosBold' }}>Amazon %5 Discount </Title>
+              <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 70, fontSize: 17, fontFamily: 'TinosBold' }}>Free </Title>
+              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description:</Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 120, fontSize: 17, fontFamily: 'TinosBold' }}>I just want to share with my student discount</Title>
+            </div>
+            <div
+              style={
+                {backgroundColor: '#FFECE7',
+                  width: 400,
+                  height: 250,
+                  margin:30,
+                  borderRadius: "20px"
+                }}>
+               <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 76574385473834</Title>
+              <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
+              <Title style={{ color: "black", marginTop: -29, paddingLeft: 80, fontSize: 17, fontFamily: 'TinosBold' }}>Adidas %20 Gold Card</Title>
+              <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 70, fontSize: 17, fontFamily: 'TinosBold' }}>$10 </Title>
+              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description:</Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 120, fontSize: 17, fontFamily: 'TinosBold' }}>Save up to %20 of your purchace</Title>
+            </div>
+            
+            <div
+              style={
+                {backgroundColor: '#FFECE7',
+                  width: 400,
+                  height: 250,
+                  margin:30,
+                  borderRadius: "20px"
+                }}>
+               <Title style={{ color: "black", paddingTop: 20, paddingLeft: 127, fontSize: 17, fontFamily: 'TinosBoldItalic' }}>ID: 82354385473845</Title>
+              <Title style={{ color: "black", paddingTop: -2, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Name: </Title>
+              <Title style={{ color: "black", marginTop: -29, paddingLeft: 80, fontSize: 17, fontFamily: 'TinosBold' }}>Uber Promocode </Title>
+              <Title style={{ color: "black", paddingTop: -25, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Type: </Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 70, fontSize: 17, fontFamily: 'TinosBold' }}>$5 </Title>
+              <Title style={{ color: "black", paddingTop: -35, paddingLeft: 20, fontSize: 17, fontFamily: 'TinosBold' }}>Description:</Title>
+              <Title style={{ color: "black", marginTop: -28, paddingLeft: 120, fontSize: 17, fontFamily: 'TinosBold' }}>Use my %10 discount on Uber that I got from my company</Title>
+            </div>
+            </div>
           </div>
-          <div style={{ backgroundColor: 'black', width: 10, height: 600, marginTop: -600, marginLeft: 570 }}>
-          </div>
-          <div style={{ backgroundColor: "#FFECE7", width: 600, height: 600, marginTop: -600, marginLeft: -27 }}>
-          <Title style={{ color: "black", paddingLeft:250, paddingTop:20,fontSize: 32, fontFamily: 'TinosBold' }}>Filters</Title>
+          <div style={{ backgroundColor: "#FFECE7", width: 470, height: 600, marginTop: -600, marginLeft: -27 }}>
+          <Title style={{ color: "black", paddingLeft:205, paddingTop:20,fontSize: 32, fontFamily: 'TinosBold' }}>Filters</Title>
           <div style ={{marginTop:40, marginLeft:70}}>
           <Title style={{color:'black', fontSize:23, fontFamily: 'TinosBold'}}>Cosmetics</Title>
           <Title style={{color:'black', fontSize:23, marginTop:25, fontFamily: 'TinosBold'}}>Clothes</Title>
@@ -92,16 +169,16 @@ function SearchPage() {
           <Title style={{color:'black', fontSize:23, marginTop:25, fontFamily: 'TinosBold'}}>Services</Title>
           <Title style={{color:'black', fontSize:23,  marginTop:25, fontFamily: 'TinosBold'}}>Other</Title>
           </div>
-          <div style ={{width:50,marginTop:-328}}>
+          <div style ={{width:50,marginTop:-313}}>
              <Space direction="vertical" size="large">
-              <Switch style={{marginLeft:240, marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
-              <Switch style={{marginLeft:240, marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
-              <Switch style={{marginLeft:240,marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
-              <Switch style={{marginLeft:240,marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
-              <Switch style={{marginLeft:240,marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
-              <Switch style={{marginLeft:240,marginTop:10}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380, marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380, marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380,marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380,marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380,marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
+              <Switch style={{marginLeft:380,marginTop:8}} defaultChecked onChange={onChangeCosmetics} />
               </Space>
-              <Radio.Group style={{marginLeft:70, marginTop:30, width:300}} defaultValue={value} onChange={onChange} value={value}>
+              <Radio.Group style={{marginLeft:70, marginTop:20, width:200}} defaultValue={value} onChange={onChange} value={value}>
                  <Radio style ={{fontSize:23, fontFamily:'TinosBold', color:"black"}} value={1}>Free</Radio>
                   <Radio style ={{fontSize:23, fontFamily:'TinosBold',color:"black"}}  value={2}>Premium</Radio>
                   <Radio style ={{fontSize:23, fontFamily:'TinosBold',color:"black"}}  value={3}>All</Radio>
@@ -109,7 +186,7 @@ function SearchPage() {
           </div>
              </div>
         </Content>
-        <Footer style={{ backgroundColor: '#FFECE7', height: 90 }}></Footer>
+        <Footer style={{ backgroundColor: '#FFECE7', height: 85}}></Footer>
       </MainLayout1>
     </>
   );
